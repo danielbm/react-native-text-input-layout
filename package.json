@@ -1,0 +1,31 @@
+{
+  "name": "react-native-text-input-layout",
+  "version": "0.0.1",
+  "description": "Simple React Native module to use Android's TextInputLayout inside your app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "web",
+    "webview",
+    "html",
+    "frame",
+    "iframe",
+    "embed",
+    "android",
+    "text",
+    "input",
+    "layout"
+  ],
+  "author": "Memox <dev@memox.com.br>",
+  "license": "MIT",
+  "repository": "https://github.com/danielbm/react-native-text-input-layout",
+  "bugs": "https://github.com/danielbm/react-native-text-input-layout/issues",
+  "peerDependencies": {
+    "react-native": ">=0.16"
+  }
+}
