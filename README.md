@@ -1,16 +1,18 @@
-# react-native-webview-android
-Simple React Native Android module to use Android's WebView inside your app.
+# react-native-text-input-layout
+Simple React Native Android module to use Android's Text Input Layout inside your app.
 
-This module will be useful until the official RN support are released.
+This module uses the native [TextInputLayout](http://developer.android.com/reference/android/support/de-sign/widget/TextInputLayout.html)  component of the Design Support Library to create a floating label, as described on Material Design, like [this](http://www.google.com.br/design/spec/components/text-fields.html#text-fields-labels)
 
-[![npm version](http://img.shields.io/npm/v/react-native-webview-android.svg?style=flat-square)](https://npmjs.org/package/react-native-webview-android "View this project on npm")
-[![npm downloads](http://img.shields.io/npm/dm/react-native-webview-android.svg?style=flat-square)](https://npmjs.org/package/react-native-webview-android "View this project on npm")
-[![npm licence](http://img.shields.io/npm/l/react-native-webview-android.svg?style=flat-square)](https://npmjs.org/package/react-native-webview-android "View this project on npm")
+More info: http://developer.android.com/reference/android/support/design/widget/TextInputLayout.html and http://www.google.com.br/design/spec/components/text-fields.html#text-fields-labels
+
+[![npm version](http://img.shields.io/npm/v/react-native-text-input-layout.svg?style=flat-square)](https://npmjs.org/package/react-native-text-input-layout "View this project on npm")
+[![npm downloads](http://img.shields.io/npm/dm/react-native-text-input-layout.svg?style=flat-square)](https://npmjs.org/package/react-native-text-input-layout "View this project on npm")
+[![npm licence](http://img.shields.io/npm/l/react-native-text-input-layout.svg?style=flat-square)](https://npmjs.org/package/react-native-text-input-layout "View this project on npm")
 
 ### Installation
 
 ```bash
-npm install react-native-webview-android --save
+npm install react-native-text-input-layout --save
 ```
 
 ### Add it to your android project
@@ -19,8 +21,7 @@ npm install react-native-webview-android --save
 
 ```gradle
 ...
-include ':RNWebView', ':app'
-project(':RNWebView').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webview-android')
+project(':RNTextInputLayout').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-text-input-layout')
 ```
 
 * In `android/app/build.gradle`
@@ -29,14 +30,14 @@ project(':RNWebView').projectDir = new File(rootProject.projectDir, '../node_mod
 ...
 dependencies {
     ...
-    compile project(':RNWebView')
+    compile project(':RNTextInputLayout')
 }
 ```
 
 * Register Module (in MainActivity.java)
 
 ```java
-import com.burnweb.rnwebview.RNWebViewPackage;  // <--- import
+import com.memox.rntextinputlayout.RNTextInputLayoutPackage;  // <--- import
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
   ......
@@ -51,7 +52,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
       .setBundleAssetName("index.android.bundle")
       .setJSMainModuleName("index.android")
       .addPackage(new MainReactPackage())
-      .addPackage(new RNWebViewPackage()) // <------ add this line to yout MainActivity class
+      .addPackage(new RNTextInputLayoutPackage()) // <------ add this line to yout MainActivity class
       .setUseDeveloperSupport(BuildConfig.DEBUG)
       .setInitialLifecycleState(LifecycleState.RESUMED)
       .build();
@@ -60,55 +61,65 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 
     setContentView(mReactRootView);
   }
-
   ......
-
 }
 ```
 
 ## Example
 ```javascript
-var React = require('react-native');
-var { StyleSheet } = React;
+'use strict';
 
-var WebViewAndroid = require('react-native-webview-android');
+import React, {
+  Component,
+  StyleSheet,
+  View,
+  TextInput
+} from 'react-native';
 
-var WebViewAndroidExample = React.createClass({
-    goBack: function() {
-      this.refs.webViewAndroidSample.goBack(); // you can use this callbacks to control webview
-    },
-    goForward: function() {
-      this.refs.webViewAndroidSample.goForward();
-    },
-    reload: function() {
-      this.refs.webViewAndroidSample.reload();
-    },
-    onNavigationStateChange: function(event) {
-        console.log(event);
-    },
-    render: function() {
-        var SITE_URL = "https://www.google.com";
+import TextInputLayout from 'react-native-text-input-layout';
 
-        return (
-            <WebViewAndroid
-              ref="webViewAndroidSample"
-              javaScriptEnabled={true}
-              geolocationEnabled={false}
-              builtInZoomControls={false}
-              onNavigationStateChange={this.onNavigationStateChange}
-              url={SITE_URL}
-              style={styles.containerWebView} />
-        );
+class Example extends Component {
+  constructor(props) {
+    super(props);
 
-        // other attributes: html, htmlCharset, baseUrl, injectedJavaScript, disableCookies
+    this.state = {
     }
-});
+  }
 
-var styles = StyleSheet.create({
-    containerWebView: {
-        flex: 1,
-    }
-});
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInputLayout>
+          <TextInput
+            style={styles.textInput}
+            placeholder='Name'
+            />
+        </TextInputLayout>
+        <TextInputLayout>
+          <TextInput
+            style={styles.textInput}
+            placeholder='Password'
+            secureTextEntry={true}
+            />
+        </TextInputLayout>
+      </View>
+    );
+  }
+}
+
+var styles = {
+  container: {
+    flex: 1,
+  },
+  textInput: {
+    backgroundColor: 'transparent',
+    color: salumColors['dark-blue'],
+    paddingLeft: 0,
+    fontSize: 20,
+  },
+}
+
+module.exports = Example;
 ```
 
 ## License
