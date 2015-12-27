@@ -1,7 +1,7 @@
 # react-native-text-input-layout
 Simple React Native Android module to use Android's Text Input Layout inside your app.
 
-This module uses the native [TextInputLayout](http://developer.android.com/reference/android/support/de-sign/widget/TextInputLayout.html)  component of the Design Support Library to create a floating label, as described on Material Design, like [this](http://www.google.com.br/design/spec/components/text-fields.html#text-fields-labels)
+This module uses the native [TextInputLayout](http://developer.android.com/reference/android/support/design/widget/TextInputLayout.html)  component of the Design Support Library to create a floating label, as described on Material Design, like [this](http://www.google.com.br/design/spec/components/text-fields.html#text-fields-labels)
 
 More info: http://developer.android.com/reference/android/support/design/widget/TextInputLayout.html and http://www.google.com.br/design/spec/components/text-fields.html#text-fields-labels
 
@@ -17,11 +17,12 @@ npm install react-native-text-input-layout --save
 
 ### Add it to your android project
 
-* In `android/setting.gradle`
+* In `android/settings.gradle`
 
 ```gradle
 ...
-project(':RNTextInputLayout').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-text-input-layout')
+include ':react-native-text-input-layout'
+project(':react-native-text-input-layout').projectDir = new File(settingsDir, '../node_modules/react-native-text-input-layout')
 ```
 
 * In `android/app/build.gradle`
@@ -113,7 +114,7 @@ var styles = {
   },
   textInput: {
     backgroundColor: 'transparent',
-    color: salumColors['dark-blue'],
+    color: 'blue',
     paddingLeft: 0,
     fontSize: 20,
   },
