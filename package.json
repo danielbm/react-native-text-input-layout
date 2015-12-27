@@ -1,6 +1,6 @@
 {
   "name": "react-native-text-input-layout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple React Native module to use Android's TextInputLayout inside your app",
   "main": "index.js",
   "scripts": {
